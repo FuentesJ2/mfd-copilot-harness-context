@@ -1,0 +1,19 @@
+/mfd/
+/mfd-test-framework/
+
+# Optional: keep other non-context repo content out of this harness repo.
+/avionics-ai-agents/
+
+# Local workspace/editor artifacts.
+/.vscode/
+
+# Local helper script artifacts.
+/install-jira-context.ps1
+
+# Root temporary Jira test-step CSV exports.
+/*test-step*.csv
+/*test-steps*.csv
+
+# Out-of-scope agents for this MFD harness context repo.
+/.github/agents/avionics-CC-verification.agent.md
+/.github/agents/CC Test Script Agent.agent.md

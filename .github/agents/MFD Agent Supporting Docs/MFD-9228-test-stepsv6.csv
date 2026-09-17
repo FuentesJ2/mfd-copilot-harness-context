@@ -1,0 +1,87 @@
+﻿#,Step,Expected Result
+1,Start test from nominal flight conditions,N/A
+2,"Set source to INS L using T2 softkey (as needed until INS L is selected).
+Set source to ADC L using T1 softkey (as needed until INS L is selected).",N/A
+3,Navigate MFD to NAV NAV,N/A
+4,"Set DCLTR TO ""HSI"" using L6 softkey",N/A
+5,Navigate MFD to NAV SETUP,N/A
+6,"Set the following:
+L_ADC_TRUE_AIRSPEED=100 kts
+L_INS_PVA_AZIMUTH=9 degrees
+L_INS_PVA_EAST_VELOCITY=0 m/s
+L_INS_PVA_NORTH_VELOCITY=0 m/s
+MAG VAR -> MAG
+ORIENT -> HDG UP","DMFDREQ-1011, DMFDREQ-1012, DMFDREQ-1013
+Wind direction: 001
+Wind Speed: 100
+Arrow Pointing Down"
+7,"Set the following:
+L_ADC_TRUE_AIRSPEED=100 kts
+L_INS_PVA_AZIMUTH=9 degrees
+L_INS_PVA_EAST_VELOCITY=0 m/s
+L_INS_PVA_NORTH_VELOCITY=0 m/s
+MAG VAR -> TRUE
+ORIENT -> HDG UP","DMFDREQ-1011, DMFDREQ-1012, DMFDREQ-1013
+Wind direction: T009
+Wind Speed: 100
+Arrow Pointing Down"
+8,"Set the following:
+L_ADC_TRUE_AIRSPEED=100 kts
+L_INS_PVA_AZIMUTH=9 degrees
+L_INS_PVA_EAST_VELOCITY=0 m/s
+L_INS_PVA_NORTH_VELOCITY=50.8 m/s
+MAG VAR -> TRUE
+ORIENT -> TRK UP","DMFDREQ-1011, DMFDREQ-1012, DMFDREQ-1013
+Wind direction: T090
+Wind Speed: 016
+Arrow Pointing Left"
+9,"Set the following:
+L_ADC_TRUE_AIRSPEED=100 kts
+L_INS_PVA_AZIMUTH=9 degrees
+L_INS_PVA_EAST_VELOCITY=0 m/s
+L_INS_PVA_NORTH_VELOCITY=50.8 m/s
+MAG VAR -> MAG
+ORIENT -> TRK UP","DMFDREQ-1011, DMFDREQ-1012, DMFDREQ-1013
+Wind direction: 082
+Wind Speed: 016
+Arrow Pointing Left"
+10,"Set the following:
+L_ADC_TRUE_AIRSPEED=200 kts
+L_INS_PVA_AZIMUTH=9 degrees
+L_INS_PVA_EAST_VELOCITY=70 m/s
+L_INS_PVA_NORTH_VELOCITY=70 m/s
+MAG VAR -> TRUE
+ORIENT -> HDG UP","DMFDREQ-1011, DMFDREQ-1012, DMFDREQ-1013
+Wind direction: T300
+Wind Speed: 121
+Arrow Pointing Lower Right"
+11,"Set the following:
+L_ADC_TRUE_AIRSPEED=200 kts
+L_INS_PVA_AZIMUTH=90 degrees
+L_INS_PVA_EAST_VELOCITY=140 m/s
+L_INS_PVA_NORTH_VELOCITY=100 m/s
+MAG VAR -> TRUE
+ORIENT -> HDG UP","DMFDREQ-1011, DMFDREQ-1012, DMFDREQ-1013
+Wind direction: T200
+Wind Speed: 207
+Arrow Pointing Upper Left"
+12,"Set the following:
+L_ADC_TRUE_AIRSPEED=0 kts
+L_INS_PVA_AZIMUTH=90 degrees
+L_INS_PVA_EAST_VELOCITY=0 m/s
+L_INS_PVA_NORTH_VELOCITY=0 m/s
+MAG VAR -> TRUE
+ORIENT -> HDG UP","DMFDREQ-1011, DMFDREQ-1012, DMFDREQ-1013
+WIND CALM"
+13,"Set the following for non-zero wind speed less than 5 knots:
+L_ADC_TRUE_AIRSPEED=100 kts
+L_INS_PVA_AZIMUTH=0 degrees
+L_INS_PVA_EAST_VELOCITY=50.4 m/s
+L_INS_PVA_NORTH_VELOCITY=0 m/s
+MAG VAR -> TRUE
+ORIENT -> HDG UP","DMFDREQ-1011
+Wind direction: T316
+Wind Speed: 140
+Arrow Pointing Lower Right"
+14,Set to INS R using T2 softkey (as needed until INS R is selected).,N/A
+15,"Repeat Steps 6-13. For all variable names in those steps, replace the L_ prefix with R_ (for example: L_ADC_TRUE_AIRSPEED -> R_ADC_TRUE_AIRSPEED, L_INS_PVA_AZIMUTH -> R_INS_PVA_AZIMUTH).",N/A

@@ -1,0 +1,96 @@
+# MFD Workspace Copilot Instructions
+
+## Project Scope
+- This workspace contains multiple repositories with different purposes:
+  - `mfd/`: MFD display application source code.
+  - `mfd-test-framework/`: test framework GUI and infrastructure.
+  - `mfd-test-framework/scripts/delta-test-scripts/`: nested repository where most new MFD test-script work is authored.
+- `mfd/` and `mfd-test-framework/` are separate repositories. `delta-test-scripts/` is a nested repository under `mfd-test-framework/scripts/`.
+- Default target for new MFD test-script authoring is `mfd-test-framework/scripts/delta-test-scripts/` unless the user specifies another location.
+
+## Primary Mission
+- Support MFD verification workflows:
+  - test-case work (including CSV artifacts), and
+  - Python test-script generation or revision.
+- In this workspace, default intent is to write or revise MFD test cases and then produce corresponding test scripts.
+
+## Jira Verification Workflow
+- Test Case Draft and Requirement Linking:
+  - Create the Jira test case and link all in-scope requirements.
+  - Initial test-case state is DRAFT.
+- Test Steps Draft (CSV Authoring for Jira Import):
+  - Draft test steps in AI chat first.
+  - Run the CSV checklist before drafting to guide coverage.
+  - Generate a Jira-importable CSV artifact in the developer environment.
+  - Enforce CSV import styling from `.github/instructions/mfd-jira-test-steps-csv.instructions.md`.
+  - Re-run the CSV checklist after CSV creation before Jira import.
+- Test Case Review:
+  - Submit the test case for TEST CASE REVIEW.
+  - Resolve review feedback and keep requirement linkage accurate.
+- Test Script Draft:
+  - After test-case review, draft the Python test script in `mfd-test-framework/scripts/delta-test-scripts/`.
+- Test Script Review and Merge:
+  - Submit for TEST SCRIPT REVIEW.
+  - Resolve feedback; validated scripts are merged by leads.
+
+## MFD Domain Context
+- `MFD` means `Multi Function Display`.
+- The MFD software is the pilot-facing cockpit display for DELTA.
+- The MFD presents flight, navigation, vehicle, and diagnostic information.
+- Pilots interact with the display through bezel buttons and knobs.
+- The UI is organized into top and bottom page regions.
+- Test artifacts in this workspace validate both data presentation and operator interaction behavior.
+
+## Runtime Environment
+- MFD UI and MFD test-framework execution are performed in an Oracle VirtualBox virtual machine environment.
+- If runtime behavior differs from static artifacts, prioritize VM-observed behavior and identify the artifact mismatch.
+
+## MFD Display Topology
+- There are three display instances: `MFD_L`, `MFD_C`, and `MFD_R`.
+- These correspond to left, center, and right cockpit display roles.
+- When a requirement or script behavior is side- or display-dependent, keep display-specific context explicit.
+
+## Source Of Truth And Data Precedence
+- For named Jira/TestRay issues (for example `MFD-####`, `DMFDREQ-####`), use the Jira context CLI skill early and often, and fetch live context first under `.github/skills/jira-context-cli/`.
+- Default workflow for issue-driven work: run Jira CLI fetch first, then analyze repository artifacts.
+- Use Jira CLI first for current requirement text, status, links, comments, authored steps, and related issue context.
+- Treat repository CSV files as workflow artifacts and style references, not as the primary source for current Jira status.
+- CSV files in this workflow are typically exported from Jira test steps, edited, and re-imported.
+- If live Jira data conflicts with repository CSV content, report both and prefer live Jira for current issue metadata.
+- For ambiguous expected behavior, inspect MFD source and relevant neighboring test scripts before finalizing test intent.
+
+## Foundational Safety Rules
+- Do not fabricate data dictionary identifiers, enums, value ranges, units, timing, or framework interfaces.
+- If required dictionary or interface details are missing, mark the gap explicitly and request clarification.
+- Keep assumptions explicit and separate from confirmed facts.
+- Keep edits scoped to the repository and paths requested by the user.
+
+## Key Reference Map
+- Primary test-script authoring area:
+  - `mfd-test-framework/scripts/delta-test-scripts/`
+- Test framework script base and helpers:
+  - `mfd-test-framework/scripts/mfd_test_script.py`
+  - `mfd-test-framework/scripts/delta-test-scripts/helpers/`
+- DELTA data dictionary XMLs used for data IDs and enums:
+  - `mfd-test-framework/av_test_infrastructure/data_dictionary/DELTA/`
+  - `mfd-test-framework/av_test_infrastructure/data_dictionary/DELTA_Data_Dictionary.xml`
+- Parallel dictionary tree in MFD source repo (may be in or out of sync with framework copy):
+  - `mfd/common/data_dictionary/DELTA/`
+  - `mfd/common/data_dictionary/DELTA_Data_Dictionary.xml`
+- MFD source-truth code areas to inspect for behavior:
+  - `mfd/source/`
+  - `mfd/gls/`
+- MFD runtime interaction and page-wiring references:
+  - `mfd/source/Common/Input/`
+  - `mfd/source/Common/Display/`
+  - `mfd/source/SpaceShip/DELTA/DeltaMfd.cpp`
+
+## Repository Context References
+- Canonical MFD supporting artifacts in this workspace are under `.github/agents/MFD Agent Supporting Docs/`.
+- If a referenced mirror path is unavailable, do not assume it exists; use available workspace paths and report the mismatch.
+- Additional supporting docs can be added under `.github/agents/MFD Agent Supporting Docs/`.
+
+## Context Engineering Guidance
+- Keep this file minimal and always-on.
+- Put detailed procedural workflows, long checklists, and role-specific generation logic in skills or agent files.
+- Put file-type-specific coding conventions in `.github/instructions/*.instructions.md` using focused `applyTo` patterns.

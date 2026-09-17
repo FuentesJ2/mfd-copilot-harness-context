@@ -1,0 +1,21 @@
+"#",Step,Expected Result
+1,Start test from nominal flight conditions,N/A
+2,Set the MFD to display the NAV MAP page.,"
+the “MAG VAR” soft key (R4) is NOT displayed"
+3,Set the MFD to display the NAV NAV page.,"
+the “MAG VAR” soft key (R4) is NOT displayed"
+4,Set the MFD to display the NAV SETUP page.,"DMFDREQ-925
+the “MAG VAR” soft key (R4) is displayed"
+5,N/A,"DMFDREQ-925
+""MAG"" is displayed under the ""MAG VAR"" label"
+6,Press the MAG VAR soft key (R4).,"DMFDREQ-1521
+""TRUE"" is displayed under the ""MAG VAR"" label"
+7,Set the MFD to display the NAV NAV page.,the “MAG VAR” soft key (R4) is NOT displayed
+8,Set the MFD to display the NAV SETUP page.,"DMFDREQ-925
+the “MAG VAR” soft key (R4) is displayed"
+9,Press the MAG VAR soft key (R4).,"DMFDREQ-1521
+""MAG"" is displayed under the ""MAG VAR"" label"
+10,Press the MAG VAR soft key (R4).,"DMFDREQ-1521
+""TRUE"" is displayed under the ""MAG VAR"" label"
+11,Press the MAG VAR soft key (R4).,"DMFDREQ-1521
+""MAG"" is displayed under the ""MAG VAR"" label"
