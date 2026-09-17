@@ -32,6 +32,12 @@ applyTo: "**/*test-steps*.csv"
 - Use the CSV checklist before drafting and after CSV generation.
 - Do not invent requirement IDs, enums, ranges, or timing values.
 
+## Layering Model
+- These core CSV rules are mandatory and are evaluated first.
+- Optional step-prefix annotation preferences may be layered afterward using `.github/instructions/mfd-test-step-annotation-overlay.instructions.md`.
+- Overlay rules must not alter core requirements for header, column order, or Expected Result formatting.
+
 ## References
 - `.github/skills/mfd-test-authoring-validation/references/csv-import-style.md`
 - `.github/skills/mfd-test-authoring-validation/references/csv-checklist.md`
+- `.github/instructions/mfd-test-step-annotation-overlay.instructions.md`

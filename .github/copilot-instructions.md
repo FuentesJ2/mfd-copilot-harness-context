@@ -23,6 +23,7 @@
   - Run the CSV checklist before drafting to guide coverage.
   - Generate a Jira-importable CSV artifact in the developer environment.
   - Enforce CSV import styling from `.github/instructions/mfd-jira-test-steps-csv.instructions.md`.
+  - Apply optional step-prefix annotation overlay from `.github/instructions/mfd-test-step-annotation-overlay.instructions.md` when annotation labels are desired.
   - Re-run the CSV checklist after CSV creation before Jira import.
 - Test Case Review:
   - Submit the test case for TEST CASE REVIEW.
@@ -94,3 +95,4 @@
 - Keep this file minimal and always-on.
 - Put detailed procedural workflows, long checklists, and role-specific generation logic in skills or agent files.
 - Put file-type-specific coding conventions in `.github/instructions/*.instructions.md` using focused `applyTo` patterns.
+- Keep personal or team-specific step-annotation preferences in one hot-swappable repo-level overlay instruction file.
