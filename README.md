@@ -7,16 +7,21 @@ Before this setup, key guidance lived in fewer places and was harder to enforce 
 
 This repository makes that guidance explicit, layered, and reusable.
 
+Key limitations in the previous setup were:
+- Rule concentration: too much behavior depended on agent-level memory instead of scoped files, so updates were harder to isolate and maintain.
+- Formatting drift: Jira CSV import structure and expected-result formatting were easier to miss without a dedicated, enforced CSV style layer.
+- Inconsistent evidence order: live Jira context was not always front-loaded, which increased risk of drafting from stale repository artifacts.
+
 ## Zoomed-Out View: Key Relationships
 This repository uses a layered context model where each layer has a narrow, explicit responsibility.
 
-- Foundational context defines project mission, Jira phase workflow, evidence precedence, and safety boundaries.
-- Tessie routes work and delegates instead of acting as one large rule bundle.
-- The Jira Context CLI skill provides live Jira/TestRay truth for named issues.
-- The MFD test authoring validation skill runs artifact-specific workflows and checklist contracts.
-- Core instructions enforce file-type standards for CSV artifacts and Python scripts.
-- The annotation overlay instruction adds optional Step label style after core CSV rules.
-- Supporting docs provide examples and references without changing core policy.
+- Foundational context in [.github/copilot-instructions.md](.github/copilot-instructions.md) defines project mission, Jira phase workflow, evidence precedence, and safety boundaries.
+- Tessie behavior in [.github/agents/MFD Test Script Agent.agent.md](.github/agents/MFD%20Test%20Script%20Agent.agent.md) routes work and delegates instead of acting as one large rule bundle.
+- Live Jira/TestRay retrieval is owned by [.github/skills/jira-context-cli/SKILL.md](.github/skills/jira-context-cli/SKILL.md) with command references in [.github/skills/jira-context-cli/references/commands.md](.github/skills/jira-context-cli/references/commands.md).
+- Artifact-specific validation workflow is owned by [.github/skills/mfd-test-authoring-validation/SKILL.md](.github/skills/mfd-test-authoring-validation/SKILL.md).
+- Core file-type standards are enforced by [.github/instructions/mfd-jira-test-steps-csv.instructions.md](.github/instructions/mfd-jira-test-steps-csv.instructions.md) and [.github/instructions/mfd-delta-test-scripts-python.instructions.md](.github/instructions/mfd-delta-test-scripts-python.instructions.md).
+- Optional post-core step annotation style is provided by [.github/instructions/mfd-test-step-annotation-overlay.instructions.md](.github/instructions/mfd-test-step-annotation-overlay.instructions.md).
+- Supporting references live under [.github/agents/MFD Agent Supporting Docs](.github/agents/MFD%20Agent%20Supporting%20Docs) without changing core policy.
 
 In short, the relationship is: orchestrate first, fetch live evidence early, enforce standards by file type, then apply optional style overlays.
 
@@ -42,7 +47,9 @@ In short, the relationship is: orchestrate first, fetch live evidence early, enf
 | [.github/skills/mfd-test-authoring-validation/references/csv-import-style.md](.github/skills/mfd-test-authoring-validation/references/csv-import-style.md) | CSV import shape gate (header, columns, expected-result format). | Prevents Jira import/formatting churn and column-layout regressions. |
 | [.github/skills/mfd-test-authoring-validation/references/missing-jira-test-case-format.md](.github/skills/mfd-test-authoring-validation/references/missing-jira-test-case-format.md) | Fallback template when Jira test-case description or steps are missing. | Provides deterministic recovery path instead of ad hoc rewrites. |
 | [.github/skills/mfd-test-authoring-validation/references/script-checklist.md](.github/skills/mfd-test-authoring-validation/references/script-checklist.md) | Script-focused review checklist. | Increases script review quality and traceability to step intent. |
-| [.github/skills/mfd-test-authoring-validation/references/evidence-map.md](.github/skills/mfd-test-authoring-validation/references/evidence-map.md) | Where to find source-truth evidence in MFD and test-framework repos. | Shortens investigation time and improves consistency of technical grounding. |
+| [.github/skills/mfd-test-authoring-validation/references/source-truth-map.md](.github/skills/mfd-test-authoring-validation/references/source-truth-map.md) | Ordered source-truth lookup map for Jira, dictionary, source code, and neighboring scripts. | Reduces stale-source errors and keeps evidence lookup deterministic. |
+| [.github/skills/mfd-test-authoring-validation/references/authoritative-references.md](.github/skills/mfd-test-authoring-validation/references/authoritative-references.md) | Defines authority by decision type and curates trusted supporting examples. | Prevents misuse of stale artifacts and clarifies what is normative vs reference-only. |
+| [.github/skills/mfd-test-authoring-validation/references/test-script-api-reference.md](.github/skills/mfd-test-authoring-validation/references/test-script-api-reference.md) | MFD test script API quick reference (page navigation, page layout, knob/bezel interactions). | Improves onboarding speed and consistency in script implementation details. |
 | [.github/instructions/mfd-jira-test-steps-csv.instructions.md](.github/instructions/mfd-jira-test-steps-csv.instructions.md) | Core mandatory rules for Jira-import CSV test-step artifacts. | Ensures consistent CSV structure and expected-result conventions. |
 | [.github/instructions/mfd-test-step-annotation-overlay.instructions.md](.github/instructions/mfd-test-step-annotation-overlay.instructions.md) | Optional, hot-swappable post-core annotation preferences for Step labels. | Lets teams personalize readability style without breaking core import standards. |
 | [.github/instructions/mfd-delta-test-scripts-python.instructions.md](.github/instructions/mfd-delta-test-scripts-python.instructions.md) | Python script conventions in delta-test-scripts. | Improves script consistency, step traceability, and safe data-dictionary usage. |

@@ -42,6 +42,28 @@
 - The UI is organized into top and bottom page regions.
 - Test artifacts in this workspace validate both data presentation and operator interaction behavior.
 
+## MFD Page Layout Reference
+- Use this as foundational test-authoring context for page-navigation intent.
+
+Top pages:
+- `PDF`
+- `SYSTEMS`
+
+Bottom pages and subpages:
+- `NAV`: `MAP`, `NAV`, `SETUP`
+- `COM`: `COM`, `XPDR`
+- `PNEU`
+- `ELEC`
+- `ECS`: `PRESS`, `TEMP`
+- `RKT`: `ALL`, `PRESS`, `VALVE`, `CTN`
+- `FTHR`
+- `CTRL`: `SURFC`, `RCS`, `FBW-CMD`, `STAB`, `RUDDER`, `ELEVON`
+- `PLAN`: `FLT`, `W&B`, `ROUTE`, `INS`
+- `DIAG`: `HIST`, `CAS`, `ADC`, `A&B`, `INS-A`, `INS-B`, `XPDR`, `DAU`, `MFD`, `HBEAT`, `ANALOG`, `DIO`, `BEZEL`, `RMC`, `BMS`, `FCC-ANA`, `FCC-DIO`, `FCC-FAULT`, `CTRLR`, `CTRLR-FAULT`, `STICK`, `FTHR`
+
+Script-level API examples for navigation and control interactions are documented in:
+- `.github/skills/mfd-test-authoring-validation/references/test-script-api-reference.md`
+
 ## Runtime Environment
 - MFD UI and MFD test-framework execution are performed in an Oracle VirtualBox virtual machine environment.
 - If runtime behavior differs from static artifacts, prioritize VM-observed behavior and identify the artifact mismatch.

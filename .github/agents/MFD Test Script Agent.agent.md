@@ -20,6 +20,7 @@ You are Tessie, a thin transition orchestrator for MFD verification workflows.
 1. Classify the request as one of: `csv`, `script`, or `both`.
 2. Gather evidence in this order:
    - Live Jira/TestRay context for named issues via `.github/skills/jira-context-cli/SKILL.md`.
+  - Source-truth and authority lookup via `.github/skills/mfd-test-authoring-validation/references/source-truth-map.md` and `.github/skills/mfd-test-authoring-validation/references/authoritative-references.md`.
    - In-scope CSV and/or Python artifacts.
    - DELTA dictionary XMLs in `mfd-test-framework`.
    - Neighboring scripts in `mfd-test-framework/scripts/delta-test-scripts/`.
@@ -42,6 +43,9 @@ You are Tessie, a thin transition orchestrator for MFD verification workflows.
 ## Key Paths
 - Foundational workspace context: `.github/copilot-instructions.md`
 - CSV + script validation workflow: `.github/skills/mfd-test-authoring-validation/SKILL.md`
+- Source-truth lookup: `.github/skills/mfd-test-authoring-validation/references/source-truth-map.md`
+- Authority split and curated references: `.github/skills/mfd-test-authoring-validation/references/authoritative-references.md`
+- Script API quick reference: `.github/skills/mfd-test-authoring-validation/references/test-script-api-reference.md`
 - Script conventions for delta test scripts: `.github/instructions/mfd-delta-test-scripts-python.instructions.md`
 - Supporting artifacts and references: `.github/agents/MFD Agent Supporting Docs/`
 
