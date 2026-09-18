@@ -40,8 +40,7 @@ argument-hint: "Provide Jira key(s), workflow phase, source test-step context, a
 2. Pull live Jira context first:
    - Use `.github/skills/jira-context-cli/SKILL.md` for named keys.
    - Capture current status, links, comments, and authored steps.
-3. Load evidence maps:
-   - Open [Source-truth map](./references/source-truth-map.md).
+3. Load authority references:
    - Open [Authoritative references](./references/authoritative-references.md).
 4. Build or revise script behavior:
    - Map script flow to step order and expected results.
@@ -72,5 +71,4 @@ argument-hint: "Provide Jira key(s), workflow phase, source test-step context, a
 ## References
 - [Script checklist](./references/script-checklist.md)
 - [Test script API reference](./references/test-script-api-reference.md)
-- [Source-truth map](./references/source-truth-map.md)
 - [Authoritative references](./references/authoritative-references.md)

@@ -79,8 +79,7 @@ State indicator shows expected value after the action."
 2. Pull live Jira context first:
    - Use `.github/skills/jira-context-cli/SKILL.md` for named keys.
    - Capture status, links, comments, description, and authored steps.
-3. Load evidence maps:
-   - Open [Source-truth map](./references/source-truth-map.md).
+3. Load authority references:
    - Open [Authoritative references](./references/authoritative-references.md).
 4. Author and normalize content:
    - If description and/or steps are missing, draft directly in the definitive format above.
@@ -113,5 +112,4 @@ State indicator shows expected value after the action."
 
 ## References
 - [CSV checklist](./references/csv-checklist.md)
-- [Source-truth map](./references/source-truth-map.md)
 - [Authoritative references](./references/authoritative-references.md)

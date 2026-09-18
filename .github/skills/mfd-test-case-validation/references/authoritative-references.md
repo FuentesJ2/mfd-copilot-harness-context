@@ -19,3 +19,9 @@ Use this file to determine authority for each decision type during DRAFT and TES
 ## Exclusions
 - Do not treat repository CSV files as current Jira status truth when live Jira data is available.
 - Do not treat supporting artifacts as normative policy when they conflict with current instructions.
+
+## Maintainer Note: Living Authoritative Script References
+- Plan: keep appending script examples that are treated as authoritative references for test-case step quality and wording patterns.
+- For each added script, include a short note describing what it does well (for example: requirement traceability, boundary coverage clarity, state-transition sequencing, or expected-result wording quality).
+- Use this template for each addition:
+  - `<script path>`: `<what this script does well and why it should be referenced>`

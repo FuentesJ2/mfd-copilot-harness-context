@@ -23,3 +23,9 @@ Use this file to determine authority for each decision type during TEST SCRIPT D
 ## Exclusions
 - Do not treat supporting artifacts as normative policy when they conflict with current instruction-level rules.
 - Do not infer requirements or expected behavior solely from legacy script style patterns.
+
+## Maintainer Note: Living Authoritative Script References
+- Plan: keep appending script examples that are treated as authoritative references for script implementation patterns.
+- For each added script, include a short note describing what it does well (for example: deterministic flow, step-to-verify traceability, dictionary-safe parameter usage, or clean logging style).
+- Use this template for each addition:
+  - `<script path>`: `<what this script does well and why it should be referenced>`
