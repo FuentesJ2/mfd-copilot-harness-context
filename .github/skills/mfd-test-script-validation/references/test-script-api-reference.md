@@ -4,7 +4,7 @@ Use this quick reference when drafting or revising MFD delta test scripts.
 
 ## Purpose
 - Provide common framework call patterns used in script authoring.
-- Keep API examples close to the validation workflow for faster onboarding.
+- Keep API examples close to the script validation workflow.
 
 ## Page Navigation APIs
 Set a top page:
@@ -60,6 +60,10 @@ self.testFramework.nominal_state_function(self.testFramework)
 ```
 
 ## MFD Page Layout Quick Reference
+Canonical source:
+- `.github/copilot-instructions.md` contains the root-level page layout context used for both test-case ideation and script authoring.
+- Keep this quick reference synchronized with root context; if a mismatch appears, treat `.github/copilot-instructions.md` as authoritative.
+
 Top pages:
 - `PDF`
 - `SYSTEMS`
@@ -78,4 +82,7 @@ Bottom pages and subpages:
 
 ## Safety Notes
 - Do not invent API names, data IDs, enums, timing, or helper interfaces.
+- For script style and structure conventions, apply `.github/instructions/mfd-delta-test-scripts-python.instructions.md` first.
+- Use neighboring script references only when ambiguity remains after instruction-level rules are applied.
+- Prefer plain in-line `self.log(...)` step logging in `run()`; do not treat `log_step` wrappers from legacy examples as the default pattern for new scripts.
 - When uncertain, confirm against neighboring scripts and framework base classes.

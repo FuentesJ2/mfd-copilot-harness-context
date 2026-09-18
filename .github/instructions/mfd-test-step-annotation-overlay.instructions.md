@@ -1,16 +1,17 @@
 ---
-description: "Use when creating or revising Jira-import test-step CSV artifacts and applying optional test-step prefix annotations after core CSV styling rules."
+description: "Use when creating or revising Jira-import test-step CSV artifacts. Defines the active test-step prefix annotation profile after core CSV styling rules."
 applyTo: "**/*test-steps*.csv"
 ---
 
 # MFD Test-Step Annotation Overlay
 
 ## Purpose
-- Provide optional readability annotations in Step text using bracketed prefix labels.
-- Apply this overlay after core CSV rules in `.github/instructions/mfd-jira-test-steps-csv.instructions.md`.
+- Provide the active readability annotations in Step text using bracketed prefix labels.
+- Apply this overlay after core CSV rules in `.github/skills/mfd-test-case-validation/SKILL.md`.
 
 ## Hot-Swap Contract
 - This file is the active annotation profile.
+- In this workspace, this overlay is applied by default to matching test-step CSV artifacts.
 - To swap preferences for another user or team, edit or replace only this file.
 - Keep this file path stable so the overlay remains automatically discoverable.
 - Overlay rules must not relax or replace core CSV requirements.

@@ -13,6 +13,9 @@
   - test-case work (including CSV artifacts), and
   - Python test-script generation or revision.
 - In this workspace, default intent is to write or revise MFD test cases and then produce corresponding test scripts.
+- Phase-focused skills:
+  - `.github/skills/mfd-test-case-validation/SKILL.md` for DRAFT and TEST CASE REVIEW.
+  - `.github/skills/mfd-test-script-validation/SKILL.md` for TEST SCRIPT DRAFT and TEST SCRIPT REVIEW.
 
 ## Jira Verification Workflow
 - Test Case Draft and Requirement Linking:
@@ -22,8 +25,9 @@
   - Draft test steps in AI chat first.
   - Run the CSV checklist before drafting to guide coverage.
   - Generate a Jira-importable CSV artifact in the developer environment.
-  - Enforce CSV import styling from `.github/instructions/mfd-jira-test-steps-csv.instructions.md`.
-  - Apply optional step-prefix annotation overlay from `.github/instructions/mfd-test-step-annotation-overlay.instructions.md` when annotation labels are desired.
+  - Apply the definitive Jira test-case description and step format from `.github/skills/mfd-test-case-validation/SKILL.md`.
+  - Apply the active step-prefix annotation overlay from `.github/instructions/mfd-test-step-annotation-overlay.instructions.md` (default for this workspace).
+  - If a different annotation style is needed, modify or replace only the overlay file while keeping the same path.
   - Re-run the CSV checklist after CSV creation before Jira import.
 - Test Case Review:
   - Submit the test case for TEST CASE REVIEW.
@@ -44,6 +48,7 @@
 
 ## MFD Page Layout Reference
 - Use this as foundational test-authoring context for page-navigation intent.
+- This root-level layout is canonical for both test-case ideation and script authoring.
 
 Top pages:
 - `PDF`
@@ -62,7 +67,7 @@ Bottom pages and subpages:
 - `DIAG`: `HIST`, `CAS`, `ADC`, `A&B`, `INS-A`, `INS-B`, `XPDR`, `DAU`, `MFD`, `HBEAT`, `ANALOG`, `DIO`, `BEZEL`, `RMC`, `BMS`, `FCC-ANA`, `FCC-DIO`, `FCC-FAULT`, `CTRLR`, `CTRLR-FAULT`, `STICK`, `FTHR`
 
 Script-level API examples for navigation and control interactions are documented in:
-- `.github/skills/mfd-test-authoring-validation/references/test-script-api-reference.md`
+- `.github/skills/mfd-test-script-validation/references/test-script-api-reference.md`
 
 ## Runtime Environment
 - MFD UI and MFD test-framework execution are performed in an Oracle VirtualBox virtual machine environment.
@@ -80,7 +85,7 @@ Script-level API examples for navigation and control interactions are documented
 - Treat repository CSV files as workflow artifacts and style references, not as the primary source for current Jira status.
 - CSV files in this workflow are typically exported from Jira test steps, edited, and re-imported.
 - If live Jira data conflicts with repository CSV content, report both and prefer live Jira for current issue metadata.
-- For ambiguous expected behavior, inspect MFD source and relevant neighboring test scripts before finalizing test intent.
+- For ambiguous expected behavior, inspect MFD source first, then consult relevant neighboring test scripts if ambiguity remains.
 
 ## Foundational Safety Rules
 - Do not fabricate data dictionary identifiers, enums, value ranges, units, timing, or framework interfaces.
@@ -112,9 +117,11 @@ Script-level API examples for navigation and control interactions are documented
 - Canonical MFD supporting artifacts in this workspace are under `.github/agents/MFD Agent Supporting Docs/`.
 - If a referenced mirror path is unavailable, do not assume it exists; use available workspace paths and report the mismatch.
 - Additional supporting docs can be added under `.github/agents/MFD Agent Supporting Docs/`.
+- Keep normative workflow policy in `.github/skills/` and `.github/instructions/`; treat Supporting Docs as examples and artifacts.
 
 ## Context Engineering Guidance
 - Keep this file minimal and always-on.
 - Put detailed procedural workflows, long checklists, and role-specific generation logic in skills or agent files.
 - Put file-type-specific coding conventions in `.github/instructions/*.instructions.md` using focused `applyTo` patterns.
 - Keep personal or team-specific step-annotation preferences in one hot-swappable repo-level overlay instruction file.
+- Keep context-placement policy in `.github/context-placement.md`.

@@ -18,6 +18,7 @@ Rules:
 - Every NOT MET and UNKNOWN row must include Reason and Recommended fix.
 - Use None in Recommended fix for MET and NOT APPLICABLE.
 - Show totals for all status values after the table.
+- After a script revision, identify each checklist status that changed since the previous review.
 - Never hide failed or unknown rows.
 
 ## Checklist Items (Order Is Mandatory)
@@ -38,3 +39,12 @@ Rules:
 - Add step comments at execution points in format: # Step <id>: <exact CSV Step text>.
 - Include step number context in verification messages.
 - Keep requirement comments tied only to requirement IDs present in that step's CSV expected result.
+
+## Critical Traceability And Style Rules
+- For script style and structure decisions, apply `.github/instructions/mfd-delta-test-scripts-python.instructions.md` first.
+- Use neighboring scripts only when a convention remains ambiguous after instruction-level rules are applied.
+- Prefer plain in-line `self.log(...)` step logging in `run()`; do not treat `log_step` wrapper usage in legacy examples as authoritative for new scripts.
+- Log each executed CSV step at least once with explicit step-id context in the log text.
+- Include step-id context in every `self.verify(...)` message.
+- For golden-image/OCR disclosure, prefer `self.verify(...)` `image_description` when available instead of adding manual disclosure-only log lines.
+- Never write the literal labels `CONTRADICTION`, `ASSUMPTION`, or `IMPORTANT NOTE` inside Python script comments, logs, or verify messages. Report those findings in chat-level validation sections instead.
