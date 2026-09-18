@@ -7,25 +7,18 @@ Before this setup, key guidance lived in fewer places and was harder to enforce 
 
 This repository makes that guidance explicit, layered, and reusable.
 
-## What Was Repurposed: Tessie As A Thin Orchestrator
-Tessie is intentionally not a giant rules file anymore.
+## Zoomed-Out View: Key Relationships
+This repository uses a layered context model where each layer has a narrow, explicit responsibility.
 
-Tessie now acts as a thin orchestrator:
-- It classifies the task as csv, script, or both.
-- It gathers evidence in the right order.
-- It delegates detailed standards and validation logic to scoped instructions and skills.
+- Foundational context defines project mission, Jira phase workflow, evidence precedence, and safety boundaries.
+- Tessie routes work and delegates instead of acting as one large rule bundle.
+- The Jira Context CLI skill provides live Jira/TestRay truth for named issues.
+- The MFD test authoring validation skill runs artifact-specific workflows and checklist contracts.
+- Core instructions enforce file-type standards for CSV artifacts and Python scripts.
+- The annotation overlay instruction adds optional Step label style after core CSV rules.
+- Supporting docs provide examples and references without changing core policy.
 
-### Plain-English Translation
-Without Tessie as an orchestrator:
-- Engineers must remember where to look first and which checklist/rules to apply.
-- Jira context fetch, CSV formatting rules, and script rules can be applied inconsistently.
-- Review feedback often repeats (missing links, formatting drift, unclear expected results).
-
-With Tessie as an orchestrator:
-- The harness routes the request through a consistent workflow.
-- Jira context is fetched first when issue keys are in scope.
-- CSV and script validations are applied in the correct phase and order.
-- Outputs are more review-ready on first pass.
+In short, the relationship is: orchestrate first, fetch live evidence early, enforce standards by file type, then apply optional style overlays.
 
 ## Jira Workflow Supported By This Context
 1. Test case draft and requirement linking.
@@ -99,6 +92,26 @@ Expected impact:
 3. Percentage of CSV imports that pass formatting expectations on first import.
 4. Percentage of artifacts accepted on first review pass.
 5. Time from draft start to review-ready submission.
+
+## What Was Repurposed: Tessie As A Thin Orchestrator
+Tessie is intentionally not a giant rules file anymore.
+
+Tessie now acts as a thin orchestrator:
+- It classifies the task as csv, script, or both.
+- It gathers evidence in the right order.
+- It delegates detailed standards and validation logic to scoped instructions and skills.
+
+### Plain-English Value Add
+Without Tessie as an orchestrator:
+- Engineers must remember where to look first and which checklist/rules to apply.
+- Jira context fetch, CSV formatting rules, and script rules can be applied inconsistently.
+- Review feedback often repeats (missing links, formatting drift, unclear expected results).
+
+With Tessie as an orchestrator:
+- The harness routes the request through a consistent workflow.
+- Jira context is fetched first when issue keys are in scope.
+- CSV and script validations are applied in the correct phase and order.
+- Outputs are more review-ready on first pass.
 
 ## Scope Notes
 This repository is for MFD harness context artifacts.
