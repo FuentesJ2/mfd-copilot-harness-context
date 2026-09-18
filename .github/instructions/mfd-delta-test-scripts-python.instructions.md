@@ -14,6 +14,15 @@ applyTo: "mfd-test-framework/scripts/delta-test-scripts/**/*.py"
 - Inherit from MfdTestScript where applicable in this test family.
 - Keep setup, action, and verification flow easy to follow in run().
 
+## Readability And Style
+- Prefer explicit in-line step logging in run(), for example self.log('Step 4: ...').
+- Avoid one-line wrapper helpers that only pass through to an existing framework call (for example log_step()).
+- Create helper methods only when they add clear behavior beyond pass-through logging, such as shared branching, validation, retry handling, or repeated multi-line actions.
+- Do not create per-step temporary string variables when the text is used only once; log the step text directly.
+- For nominal state setup, call self.testFramework.nominal_state_function(self.testFramework) directly in run() when that harness API is expected in this test family.
+- Do not add defensive getattr or fallback wrappers around nominal_state_function unless the user explicitly asks for compatibility handling.
+- Keep run() linear and traceable so reviewers can map each action and verify block to the corresponding test step without jumping between tiny helper methods.
+
 ## Step Traceability
 - Map script actions to CSV test steps.
 - Add step comments in this format at execution points:

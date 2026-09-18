@@ -65,6 +65,19 @@ C:/Dev/.github/tools/jira-context/jira-context.exe fetch test-case MFD-9212 --sa
 9. If the CLI fails or the Jira/TestRay shape is unclear, use the troubleshooting commands in [debugging reference](./references/debugging.md) before concluding the data is unavailable.
 10. Unless the user explicitly asks for code impact, test impact, implementation comparison, or framework behavior, stop after the Jira/TestRay summary and `Next Query Layers`.
 
+## Requirement Context Contract
+- For `fetch requirement ...`, treat the Details and Main context fields as required context whenever Jira returns them.
+- After each requirement fetch, read the saved normalized JSON first and explicitly inspect these keys: `summary`, `description`, `status`, `issue_type`, `project_key`, `assignee`, `updated`, `links`, `comments`, `priority`, `resolution`, `labels`, `components`, `custom_fields.customfield_19801` (Data ID), `custom_fields.customfield_10170` (Vehicle), `custom_fields.customfield_10703` (Verification Method), `custom_fields.customfield_10708` (Rationale), `custom_fields.customfield_16505` (Requirement Level), and `custom_fields.customfield_18002` (Verification Environment).
+- Unless the user asked for a narrow section-only response, include the requirement `description` in the requirement summary (full text or a faithful excerpt).
+- If one or more required requirement-context fields are missing, run `discover-fields <issue-key> --include-raw`, map the display names from `raw_response.names`, then refetch with explicit `--field` additions for requirement details: `components`, `labels`, `priority`, `resolution`, `issuetype`, `customfield_10170`, `customfield_10703`, `customfield_10708`, `customfield_16505`, `customfield_18002`, and `customfield_19801`.
+- Do not assume one requirement proves schema stability across all projects; use discovery when field names or IDs appear to drift.
+
+## Test-Case Context Contract
+- For `fetch test-case ...`, treat test intent, requirement linkage, and execution evidence as required context when available.
+- After each test-case fetch, read the saved normalized JSON first and explicitly inspect these keys: `summary`, `description`, `status`, `issue_type`, `project_key`, `assignee`, `updated`, `links`, `comments`, and `test_management` (`test_steps`, `linked_requirements`, `linked_test_suites`, `linked_test_plans`, `automation_reference`, `defects`, `ad_hoc_test_runs`).
+- When linked requirements are present, inspect each linked requirement for `custom_fields.customfield_19801` (Data ID) and prepare a comparable list for output.
+- If required test-case context is missing, refetch with explicit `--field` additions and/or a focused `--section` query before summarizing.
+
 ## Focused Fetches
 - `links`
 - `comments`
@@ -78,7 +91,9 @@ Use the exact command patterns in [commands reference](./references/commands.md)
 - Prefer normalized output for summaries.
 - Default to markdown tables whenever two or more comparable fields can be lined up cleanly.
 - Prefer tables over bullets for snapshots, requirement lists, linked issues, run history, step counts, statuses, owners, and other structured Jira/TestRay data.
-- For a test-case rundown, prefer this order: Snapshot, Current Requirements, Test Intent, Execution Signals, Related Issues, Comments Worth Reading, Next Query Layers.
+- In `Test Intent`, `Authored Steps` must show the existing Jira test-case STEPS from `test_management.test_steps`, not only a count.
+- When `test_management.test_steps` has entries, include an `Authored Steps` table with one row per step using `step_number`, `step_text`, and `expected_result_text`.
+- For a test-case rundown, prefer this order: Snapshot, Current Requirements, Test Intent, Authored Steps, Execution Signals, Related Issues, Comments Worth Reading, Next Query Layers.
 - Keep headings short and deliberate.
 - After an important table, add a short interpretation paragraph when there is a meaningful signal or mismatch to call out.
 - If the user asked for a pure section such as `comments` or `ad-hoc-runs`, summarize only that section unless they ask for more.
@@ -102,9 +117,15 @@ Preferred compact shape:
 The biggest signal is whether the current requirement and current test-case expectations still match.
 
 **Test Intent**
-| Objective | Authored Steps |
+| Objective | Authored Steps Count |
 | --- | --- |
 | Show that the DIAG XPDR page correctly displays the Callsign after setting Flight ID bytes. | 8 |
+
+**Authored Steps**
+| Step # | Step Text | Expected Result |
+| --- | --- | --- |
+| 1 | Set XPDR flight ID bytes for a valid callsign input. | Callsign displays the expected 8-character ASCII value on the DIAG XPDR page. |
+| 2 | Set an out-of-range byte pattern for the callsign field. | Display handling matches the requirement-defined out-of-range behavior. |
 
 **Execution Signals**
 | Latest Run | Status | Notable Result | Evidence |
