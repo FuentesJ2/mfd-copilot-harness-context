@@ -82,6 +82,7 @@ Script-level API examples for navigation and control interactions are documented
 - For named Jira/TestRay issues (for example `MFD-####`, `DMFDREQ-####`), use the Jira context CLI skill early and often, and fetch live context first under `.github/skills/jira-context-cli/`.
 - Default workflow for issue-driven work: run Jira CLI fetch first, then analyze repository artifacts.
 - Use Jira CLI first for current requirement text, status, links, comments, authored steps, and related issue context.
+- After Jira fetches that save normalized JSON, read the saved JSON file directly from the workspace; do not use terminal parsing wrappers (PowerShell/Python/jq) unless the user explicitly asks for command-based parsing output.
 - Treat repository CSV files as workflow artifacts and style references, not as the primary source for current Jira status.
 - CSV files in this workflow are typically exported from Jira test steps, edited, and re-imported.
 - If live Jira data conflicts with repository CSV content, report both and prefer live Jira for current issue metadata.
