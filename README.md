@@ -10,6 +10,17 @@ The current setup is intentionally phase-split, authority-driven, and easier to 
 - Root instructions define always-on policy.
 - Authoritative reference files hold decision authority and a growing list of script exemplars.
 
+## Quick Start For Contributors
+1. Edit test-case rules here:
+  - [.github/skills/mfd-test-case-validation/SKILL.md](.github/skills/mfd-test-case-validation/SKILL.md)
+  - [.github/skills/mfd-test-case-validation/references/authoritative-references.md](.github/skills/mfd-test-case-validation/references/authoritative-references.md)
+2. Edit script rules here:
+  - [.github/skills/mfd-test-script-validation/SKILL.md](.github/skills/mfd-test-script-validation/SKILL.md)
+  - [.github/instructions/mfd-delta-test-scripts-python.instructions.md](.github/instructions/mfd-delta-test-scripts-python.instructions.md)
+3. Append authoritative script exemplars here:
+  - [.github/skills/mfd-test-case-validation/references/authoritative-references.md](.github/skills/mfd-test-case-validation/references/authoritative-references.md)
+  - [.github/skills/mfd-test-script-validation/references/authoritative-references.md](.github/skills/mfd-test-script-validation/references/authoritative-references.md)
+
 ## Current Harness Configuration
 
 | Layer | File | Responsibility |
@@ -95,6 +106,10 @@ Tessie adds value by:
 
 This keeps orchestration stable while phase logic and formatting logic evolve independently.
 
+Concrete business story:
+- With Tessie, changing routing/delegation logic only changes Tessie.
+- Without Tessie, changing routing means editing [.github/copilot-instructions.md](.github/copilot-instructions.md), which affects all default interactions in the workspace.
+
 ## What Was Wrong With Old Tessie, And How This Repo Was Transformed
 
 Previous pain points:
@@ -102,6 +117,16 @@ Previous pain points:
 - More redundant policy spread across agent, skill, and references.
 - Higher risk of policy drift when changing CSV or script rules.
 - Heavier dependence on implicit memory versus explicit phase ownership.
+
+Why this hurt in business terms:
+- There was no clean orchestration boundary, so routing changes could spill into unrelated behavior.
+- Workflow updates had larger blast radius, which made review and rollback slower.
+- Ownership was less clear, so policy changes and routing changes were harder to separate during reviews.
+- The harness was harder to evolve safely as scope grew because too much logic felt coupled.
+
+Concrete consequence to avoid:
+- If routing/delegation lives only in root policy, changing routing means editing [.github/copilot-instructions.md](.github/copilot-instructions.md), which impacts all default interactions.
+- With Tessie as orchestrator, routing/delegation changes are isolated to [.github/agents/MFD Test Script Agent.agent.md](.github/agents/MFD%20Test%20Script%20Agent.agent.md).
 
 Current transformation:
 - Split workflow into two focused skills:
